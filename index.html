@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Envío por WhatsApp</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <div class="container mt-5">
+        <!-- Encabezado con fondo de color -->
+        <div class="mb-3 p-3 bg-primary text-white">
+            <h1 class="display-4">Enviar mensaje por WhatsApp sin agendar el contacto</h1>
+            <p class="lead">Colocá el número al que querés escribirle y luego el mensaje</p>
+        </div>
+
+        <!-- Agregamos un nuevo campo para seleccionar el país -->
+        <label for="pais">País:</label>
+        <select id="pais" class="form-select" onchange="actualizarPrefijo()">
+            <option value="54" selected>Argentina (+54)</option>
+            <option value="1">Estados Unidos (+1)</option>
+            <option value="52">México (+52)</option>
+            <option value="55">Brasil (+55)</option>
+            <option value="1">Canadá (+1)</option>
+            <option value="57">Colombia (+57)</option>
+            <option value="51">Perú (+51)</option>
+            <!-- Agrega más opciones para otros países según sea necesario -->
+        </select>
+
+        <!-- Campo para el número de teléfono -->
+        <label for="telefono">Número de Teléfono:</label>
+        <!-- Agregamos un span para mostrar el prefijo -->
+        <div class="input-group">
+            <span class="input-group-text">+<span id="prefijo">54</span></span>
+            <input type="text" id="telefono" class="form-control" placeholder="Ingrese el número de teléfono">
+        </div>
+
+        <label for="mensaje">Mensaje:</label>
+        <textarea id="mensaje" class="form-control" placeholder="Escriba su mensaje"></textarea>
+
+        <button onclick="enviarPorWhatsApp()" class="btn btn-primary mt-3">Enviar por WhatsApp</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        function actualizarPrefijo() {
+            // Obtener el elemento select y el valor seleccionado
+            var paisSelect = document.getElementById("pais");
+            var prefijo = paisSelect.value;
+
+            // Actualizar el prefijo en el campo de teléfono y en el span
+            document.getElementById("telefono").value = "";
+            document.getElementById("prefijo").innerText = prefijo;
+        }
+    </script>
+
+</body>
+</html>
